@@ -4,6 +4,8 @@ import demo.kotlinpractice.domain.member.presentation.dto.request.MemberCreateRe
 import demo.kotlinpractice.domain.member.presentation.dto.response.MemberResponse
 import demo.kotlinpractice.domain.member.presentation.facade.MemberFacade
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +19,14 @@ class MemberController(
     @PostMapping
     fun createMember(@RequestBody request: MemberCreateRequest):
             ResponseEntity<MemberResponse> {
-        return ResponseEntity.ok(memberFacade.createMember(request))
 
+        return ResponseEntity.ok(memberFacade.createMember(request))
+    }
+
+    @GetMapping("/{memberId}")
+    fun findMember(@PathVariable(value = "memberId") memberId: Long):
+            ResponseEntity<MemberResponse> {
+
+        return ResponseEntity.ok(memberFacade.findMember(memberId))
     }
 }

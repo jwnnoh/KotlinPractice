@@ -15,4 +15,10 @@ class MemberFacade(
 
         return MemberResponse.of(member)
     }
+
+    fun findMember(memberId: Long): MemberResponse {
+        val member: Member = memberUseCase.findMember(memberId)
+
+        return MemberResponse.of(member)
+    }
 }

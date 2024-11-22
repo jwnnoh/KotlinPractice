@@ -6,4 +6,6 @@ import demo.kotlinpractice.domain.member.presentation.dto.request.MemberCreateRe
 interface MemberUseCase {
 
     fun createMember(request: MemberCreateRequest): Member
+
+    fun findMember(memberId: Long): Member
 }

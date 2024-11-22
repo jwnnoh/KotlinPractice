@@ -21,4 +21,9 @@ class MemberService(
         )
         return memberRepository.save(member)
     }
+
+    @Transactional(readOnly = true)
+    override fun findMember(memberId: Long): Member {
+        return memberRepository.findById(memberId)
+    }
 }
