@@ -40,4 +40,6 @@ class MemberEntity(
     fun getId(): Long = id
 
     fun getName(): String = name
+
+    fun getPassword(): String = password
 }
