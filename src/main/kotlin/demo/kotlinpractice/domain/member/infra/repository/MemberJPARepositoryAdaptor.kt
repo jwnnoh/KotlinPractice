@@ -23,4 +23,9 @@ class MemberJPARepositoryAdaptor(
     override fun save(member: Member): Member {
         return memberJPARepository.save(MemberEntity.from(member)).toDomain()
     }
+
+    override fun findByName(name: String): Member {
+        return memberJPARepository.findByName(name).getOrNull()
+            ?: throw IllegalArgumentException()
+    }
 }
