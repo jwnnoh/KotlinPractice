@@ -4,6 +4,7 @@ import demo.kotlinpractice.domain.member.domain.Member
 import demo.kotlinpractice.domain.member.domain.repository.MemberRepository
 import demo.kotlinpractice.domain.member.port.`in`.MemberUseCase
 import demo.kotlinpractice.domain.member.presentation.dto.request.MemberCreateRequest
+import demo.kotlinpractice.domain.member.presentation.dto.request.MemberUpdateRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -25,5 +26,13 @@ class MemberService(
     @Transactional(readOnly = true)
     override fun findMember(memberId: Long): Member {
         return memberRepository.findById(memberId)
+    }
+
+    @Transactional
+    override fun updateMember(request: MemberUpdateRequest): Member {
+        val member = findMember(request.memberId)
+        member.updateInfo(request.name, request.password)
+
+        return memberRepository.save(member)
     }
 }

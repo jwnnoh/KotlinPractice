@@ -3,6 +3,7 @@ package demo.kotlinpractice.domain.member.presentation.facade
 import demo.kotlinpractice.domain.member.domain.Member
 import demo.kotlinpractice.domain.member.port.`in`.MemberUseCase
 import demo.kotlinpractice.domain.member.presentation.dto.request.MemberCreateRequest
+import demo.kotlinpractice.domain.member.presentation.dto.request.MemberUpdateRequest
 import demo.kotlinpractice.domain.member.presentation.dto.response.MemberResponse
 import org.springframework.stereotype.Service
 
@@ -19,6 +20,11 @@ class MemberFacade(
     fun findMember(memberId: Long): MemberResponse {
         val member: Member = memberUseCase.findMember(memberId)
 
+        return MemberResponse.of(member)
+    }
+
+    fun updateMember(request: MemberUpdateRequest): MemberResponse {
+        val member: Member = memberUseCase.updateMember(request)
         return MemberResponse.of(member)
     }
 }
