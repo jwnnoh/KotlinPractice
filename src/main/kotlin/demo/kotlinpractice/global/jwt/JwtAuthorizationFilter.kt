@@ -1,6 +1,5 @@
 package demo.kotlinpractice.global.jwt
 
-import demo.kotlinpractice.domain.auth.AuthDetailsService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
