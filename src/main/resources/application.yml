@@ -3,10 +3,10 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:h2:mem:kotlinpractice
+    url: jdbc:mysql://localhost:3306/kotlinpractice
     username: root
     password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
@@ -17,6 +17,5 @@ spring:
         format_sql: true
         use_sql_comments: true
 
-  h2:
-    console:
-      enabled: true
+jwt:
+  secret: TestSecretKeyForJWTTokenTestSecretKeyForJWTToken

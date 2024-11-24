@@ -9,4 +9,6 @@ interface MemberRepository {
     fun existsByName(name: String): Boolean
 
     fun save(member: Member): Member
+
+    fun findByName(name: String): Member
 }
