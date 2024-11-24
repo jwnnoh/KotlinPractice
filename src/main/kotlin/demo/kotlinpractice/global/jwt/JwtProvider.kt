@@ -1,5 +1,6 @@
 package demo.kotlinpractice.global.jwt
 
+import demo.kotlinpractice.domain.auth.AuthDetails
 import demo.kotlinpractice.domain.auth.AuthDetailsService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
@@ -52,5 +53,9 @@ class JwtProvider(
             .build()
             .parseSignedClaims(token)
             .getPayload()
+    }
+
+    fun getAuthDetails(claims: Claims): AuthDetails {
+        return authDetailsService.loadUserByUsername(claims.subject)
     }
 }
