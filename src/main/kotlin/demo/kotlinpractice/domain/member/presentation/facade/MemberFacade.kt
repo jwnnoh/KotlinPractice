@@ -1,5 +1,6 @@
 package demo.kotlinpractice.domain.member.presentation.facade
 
+import demo.kotlinpractice.domain.auth.AuthDetails
 import demo.kotlinpractice.domain.member.domain.Member
 import demo.kotlinpractice.domain.member.port.`in`.MemberUseCase
 import demo.kotlinpractice.domain.member.presentation.dto.request.LoginRequest
@@ -19,8 +20,8 @@ class MemberFacade(
         return MemberResponse.of(member)
     }
 
-    fun findMember(memberId: Long): MemberResponse {
-        val member: Member = memberUseCase.findMember(memberId)
+    fun findMember(authDetails: AuthDetails): MemberResponse {
+        val member: Member = memberUseCase.findMember(authDetails.getId())
 
         return MemberResponse.of(member)
     }
