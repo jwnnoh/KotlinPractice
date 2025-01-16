@@ -1,4 +1,4 @@
-package demo.kotlinpractice.domain.member.presentation.dto.request
+package demo.kotlinpractice.member.dto.request
 
 data class MemberCreateRequest(
     val name: String,

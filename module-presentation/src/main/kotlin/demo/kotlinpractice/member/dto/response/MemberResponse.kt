@@ -1,4 +1,4 @@
-package demo.kotlinpractice.domain.member.presentation.dto.response
+package demo.kotlinpractice.member.dto.response
 
 import demo.kotlinpractice.domain.member.domain.Member
 

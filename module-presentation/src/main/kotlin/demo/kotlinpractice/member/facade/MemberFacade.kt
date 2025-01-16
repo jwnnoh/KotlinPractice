@@ -1,14 +1,4 @@
-package demo.kotlinpractice.domain.member.presentation.facade
-
-import demo.kotlinpractice.domain.auth.AuthDetails
-import demo.kotlinpractice.domain.member.domain.Member
-import demo.kotlinpractice.domain.member.port.`in`.MemberUseCase
-import demo.kotlinpractice.domain.member.presentation.dto.request.LoginRequest
-import demo.kotlinpractice.domain.member.presentation.dto.response.LoginResponse
-import demo.kotlinpractice.domain.member.presentation.dto.request.MemberCreateRequest
-import demo.kotlinpractice.domain.member.presentation.dto.request.MemberUpdateRequest
-import demo.kotlinpractice.domain.member.presentation.dto.response.MemberResponse
-import org.springframework.stereotype.Service
+package demo.kotlinpractice.member.facade
 
 @Service
 class MemberFacade(
