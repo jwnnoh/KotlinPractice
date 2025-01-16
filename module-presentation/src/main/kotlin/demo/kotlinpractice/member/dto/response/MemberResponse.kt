@@ -1,6 +1,6 @@
 package demo.kotlinpractice.member.dto.response
 
-import demo.kotlinpractice.domain.member.domain.Member
+import demo.kotlinpractice.member.domain.Member
 
 data class MemberResponse(
     val id: Long,
@@ -9,8 +9,8 @@ data class MemberResponse(
     companion object {
         fun of(member: Member): MemberResponse {
             return MemberResponse(
-                id = member.getId(),
-                name = member.getName(),
+                id = member.id,
+                name = member.name,
             )
         }
     }

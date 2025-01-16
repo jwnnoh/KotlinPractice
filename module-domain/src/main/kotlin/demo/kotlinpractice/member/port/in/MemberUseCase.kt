@@ -9,5 +9,9 @@ interface MemberUseCase {
 
     fun findByName(name: String): Member?
 
-    fun loginMember(request: LoginRequest): LoginResponse
+    fun updateMember(
+        memberId: Long,
+        name: String,
+        password: String,
+    ): Member
 }

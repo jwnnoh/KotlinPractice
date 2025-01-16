@@ -18,6 +18,7 @@ allOpen {
 
 dependencies {
     implementation(project(":module-domain"))
+    implementation(project(":module-independent"))
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 

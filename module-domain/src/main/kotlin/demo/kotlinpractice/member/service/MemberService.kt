@@ -28,15 +28,19 @@ class MemberService(
     }
 
     @Transactional(readOnly = true)
-    override fun findMember(memberId: Long): Member {
-        return memberRepository.findById(memberId)
+    override fun findByName(name: String): Member? {
+        return memberPersistencePort.findByName(name)
     }
 
     @Transactional
-    override fun updateMember(request: MemberUpdateRequest): Member {
-        val member = findMember(request.memberId)
-        member.updateInfo(request.name, request.password)
+    override fun updateMember(
+        memberId: Long,
+        name: String,
+        password: String,
+    ): Member {
+        val member = findById(memberId)
+        member.updateInfo(name, password)
 
-        return memberRepository.save(member)
+        return memberPersistencePort.save(member)
     }
 }
