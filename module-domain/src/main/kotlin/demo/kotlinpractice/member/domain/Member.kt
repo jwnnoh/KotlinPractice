@@ -5,7 +5,7 @@ class Member(
     var name: String,
     var password: String,
 ) {
-    fun updateInfo(name: String, password: String): Unit {
+    fun updateInfo(name: String, password: String) {
         this.name = name
         this.password = password
     }
