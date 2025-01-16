@@ -1,11 +1,24 @@
 package demo.kotlinpractice.principal.service
 
+import demo.kotlinpractice.error.exception.MemberNotFoundException
+import demo.kotlinpractice.member.port.`in`.MemberUseCase
+import demo.kotlinpractice.principal.AuthDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.stereotype.Service
+
 @Service
 class AuthDetailsService(
-    private val memberRepository: MemberRepository
-): UserDetailsService {
+    private val memberUseCase: MemberUseCase
+) : UserDetailsService {
     override fun loadUserByUsername(name: String): AuthDetails {
-        val member = memberRepository.findByName(name)
-        return AuthDetails(member.getId(), member.getName(), member.getPassword(), "ROLE_USER")
+        val member = memberUseCase.findByName(name)
+            ?: throw MemberNotFoundException()
+
+        return AuthDetails(
+            member.id,
+            member.name,
+            member.password,
+            "ROLE_USER"
+        )
     }
 }

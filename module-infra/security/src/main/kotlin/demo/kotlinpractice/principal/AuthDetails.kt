@@ -1,5 +1,8 @@
 package demo.kotlinpractice.principal
 
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import java.util.Collections
 
 data class AuthDetails(
@@ -8,7 +11,7 @@ data class AuthDetails(
     private val password: String,
     private val role: String
 ): UserDetails {
-    override fun getAuthorities(): Collection<GrantedAuthority?> {
+    override fun getAuthorities(): Collection<GrantedAuthority> {
         return Collections.singletonList(SimpleGrantedAuthority("ROLE_USER"))
     }
 

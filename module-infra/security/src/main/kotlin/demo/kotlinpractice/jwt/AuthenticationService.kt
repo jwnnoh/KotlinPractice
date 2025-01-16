@@ -1,8 +1,7 @@
 package demo.kotlinpractice.jwt
 
-import demo.kotlinpractice.domain.auth.AuthDetailsService
-import demo.kotlinpractice.domain.member.presentation.dto.request.LoginRequest
-import demo.kotlinpractice.domain.member.presentation.dto.response.LoginResponse
+import demo.kotlinpractice.auth.port.out.AuthenticationPort
+import demo.kotlinpractice.principal.service.AuthDetailsService
 import io.jsonwebtoken.Claims
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -17,24 +16,17 @@ class AuthenticationService(
     private val jwtProvider: JwtProvider,
     private val authDetailsService: AuthDetailsService,
     private val authenticationManager: AuthenticationManager
-) {
-    fun authenticate(request: LoginRequest): LoginResponse {
+) : AuthenticationPort {
+    override fun authenticate(name: String, password: String): Long {
         authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
-                request.name,
-                request.password
+                name,
+                password
             )
         )
+        val authDetails = authDetailsService.loadUserByUsername(name)
 
-        val authDetails = authDetailsService.loadUserByUsername(request.name)
-
-        val accessToken = jwtProvider.generateAccessToken(
-            authDetails.getId(),
-            authDetails.username,
-            authDetails.authorities.toString()
-        )
-
-        return LoginResponse(authDetails.getId(), accessToken)
+        return authDetails.getId()
     }
 
     fun getAuthentication(token: String): Authentication {

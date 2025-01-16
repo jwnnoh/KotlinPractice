@@ -1,7 +1,8 @@
 package demo.kotlinpractice.jwt
 
-import demo.kotlinpractice.domain.auth.AuthDetails
-import demo.kotlinpractice.domain.auth.AuthDetailsService
+import demo.kotlinpractice.auth.port.out.TokenPort
+import demo.kotlinpractice.principal.AuthDetails
+import demo.kotlinpractice.principal.service.AuthDetailsService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import org.springframework.beans.factory.annotation.Value
@@ -16,7 +17,7 @@ import kotlin.time.Duration.Companion.days
 class JwtProvider(
     private val authDetailsService: AuthDetailsService,
     @Value("\${jwt.secret}") private val secret: String
-) {
+) : TokenPort {
     private val accessTokenDuration: Duration = 1.days
 
     private val secretKey: SecretKeySpec
@@ -25,9 +26,16 @@ class JwtProvider(
             return SecretKeySpec(keyBytes, "HmacSHA256")
         }
 
-    fun generateAccessToken(memberId: Long, name: String, role: String): String {
-        return generateToken(memberId, name, accessTokenDuration, role)
-    }
+    override fun generateAccessToken(
+        memberId: Long,
+        name: String,
+        role: String
+    ): String = generateToken(
+        memberId,
+        name,
+        accessTokenDuration,
+        role
+    )
 
     private fun generateToken(
         memberId: Long,
