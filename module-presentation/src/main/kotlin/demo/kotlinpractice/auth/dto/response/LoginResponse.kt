@@ -1,4 +1,4 @@
-package demo.kotlinpractice.member.dto.response
+package demo.kotlinpractice.auth.dto.response
 
 data class LoginResponse(
     val memberId: Long,

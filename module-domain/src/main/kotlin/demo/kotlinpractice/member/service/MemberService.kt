@@ -1,5 +1,6 @@
 package demo.kotlinpractice.member.service
 
+import demo.kotlinpractice.auth.port.out.SecurityPort
 import demo.kotlinpractice.member.domain.Member
 import demo.kotlinpractice.member.port.`in`.MemberUseCase
 import demo.kotlinpractice.member.port.out.MemberPersistencePort
@@ -9,17 +10,21 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class MemberService(
     private val memberPersistencePort: MemberPersistencePort,
-    private val passwordEncoder: PasswordEncoder,
-    private val authenticationService: AuthenticationService
-): MemberUseCase {
+    private val securityPort: SecurityPort,
+) : MemberUseCase {
     @Transactional
-    override fun createMember(request: MemberCreateRequest): Member {
+    override fun createMember(name: String, password: String): Member {
         val member = Member(
             id = 0,
-            name = request.name,
-            password = passwordEncoder.encode(request.password)
+            name = name,
+            password = securityPort.encode(password)
         )
-        return memberRepository.save(member)
+        return memberPersistencePort.save(member)
+    }
+
+    @Transactional(readOnly = true)
+    override fun findById(memberId: Long): Member {
+        return memberPersistencePort.findById(memberId)
     }
 
     @Transactional(readOnly = true)
@@ -33,10 +38,5 @@ class MemberService(
         member.updateInfo(request.name, request.password)
 
         return memberRepository.save(member)
-    }
-
-    @Transactional
-    override fun loginMember(request: LoginRequest): LoginResponse {
-       return authenticationService.authenticate(request)
     }
 }
