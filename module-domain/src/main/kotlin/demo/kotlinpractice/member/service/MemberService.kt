@@ -1,20 +1,14 @@
-package demo.kotlinpractice.domain.member.service
+package demo.kotlinpractice.member.service
 
-import demo.kotlinpractice.domain.member.domain.Member
-import demo.kotlinpractice.domain.member.domain.repository.MemberRepository
-import demo.kotlinpractice.domain.member.port.`in`.MemberUseCase
-import demo.kotlinpractice.domain.member.presentation.dto.request.LoginRequest
-import demo.kotlinpractice.domain.member.presentation.dto.request.MemberCreateRequest
-import demo.kotlinpractice.domain.member.presentation.dto.request.MemberUpdateRequest
-import demo.kotlinpractice.domain.member.presentation.dto.response.LoginResponse
-import demo.kotlinpractice.global.jwt.AuthenticationService
-import org.springframework.security.crypto.password.PasswordEncoder
+import demo.kotlinpractice.member.domain.Member
+import demo.kotlinpractice.member.port.`in`.MemberUseCase
+import demo.kotlinpractice.member.port.out.MemberPersistencePort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class MemberService(
-    private val memberRepository: MemberRepository,
+    private val memberPersistencePort: MemberPersistencePort,
     private val passwordEncoder: PasswordEncoder,
     private val authenticationService: AuthenticationService
 ): MemberUseCase {

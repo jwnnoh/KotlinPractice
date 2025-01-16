@@ -1,9 +1,8 @@
-package demo.kotlinpractice.domain.member.domain.repository
+package demo.kotlinpractice.member.port.out
 
-import demo.kotlinpractice.domain.member.domain.Member
+import demo.kotlinpractice.member.domain.Member
 
-interface MemberRepository {
-
+interface MemberPersistencePort {
     fun findById(id: Long): Member
 
     fun existsByName(name: String): Boolean
