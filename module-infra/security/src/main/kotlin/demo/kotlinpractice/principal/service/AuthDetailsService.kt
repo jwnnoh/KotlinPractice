@@ -1,8 +1,4 @@
-package demo.kotlinpractice.domain.auth
-
-import demo.kotlinpractice.domain.member.domain.repository.MemberRepository
-import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.stereotype.Service
+package demo.kotlinpractice.principal.service
 
 @Service
 class AuthDetailsService(

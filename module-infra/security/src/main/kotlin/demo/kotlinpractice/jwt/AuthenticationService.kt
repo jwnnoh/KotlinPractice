@@ -1,4 +1,4 @@
-package demo.kotlinpractice.global.jwt
+package demo.kotlinpractice.jwt
 
 import demo.kotlinpractice.domain.auth.AuthDetailsService
 import demo.kotlinpractice.domain.member.presentation.dto.request.LoginRequest

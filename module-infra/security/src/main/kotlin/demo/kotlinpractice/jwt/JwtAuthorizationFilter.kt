@@ -1,4 +1,4 @@
-package demo.kotlinpractice.global.jwt
+package demo.kotlinpractice.jwt
 
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
