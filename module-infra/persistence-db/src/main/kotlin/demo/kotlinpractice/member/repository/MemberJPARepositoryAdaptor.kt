@@ -1,4 +1,4 @@
-package demo.kotlinpractice.domain.member.infra.repository
+package demo.kotlinpractice.member.repository
 
 import demo.kotlinpractice.domain.member.domain.Member
 import demo.kotlinpractice.domain.member.domain.repository.MemberRepository

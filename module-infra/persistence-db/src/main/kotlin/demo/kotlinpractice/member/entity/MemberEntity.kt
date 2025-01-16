@@ -1,11 +1,4 @@
-package demo.kotlinpractice.domain.member.infra
-
-import demo.kotlinpractice.domain.member.domain.Member
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+package demo.kotlinpractice.member.entity
 
 @Entity(name = "member")
 class MemberEntity(
