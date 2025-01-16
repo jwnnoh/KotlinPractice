@@ -1,5 +1,12 @@
 package demo.kotlinpractice.member.entity
 
+import demo.kotlinpractice.member.domain.Member
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+
 @Entity(name = "member")
 class MemberEntity(
     @Id
@@ -23,9 +30,9 @@ class MemberEntity(
     companion object {
         fun from(member: Member): MemberEntity {
             return MemberEntity(
-                id = member.getId(),
-                name = member.getName(),
-                password = member.getPassword(),
+                id = member.id,
+                name = member.name,
+                password = member.password,
             )
         }
     }
