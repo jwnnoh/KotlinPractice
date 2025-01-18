@@ -5,6 +5,7 @@ plugins {
     kotlin("plugin.spring") version "2.1.0" apply false
     id("org.springframework.boot") version "3.4.1" apply false
     id("io.spring.dependency-management") version "1.1.7" apply false
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 allprojects {
@@ -23,6 +24,14 @@ allprojects {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "jwnnoh_KotlinPractice")
+        property("sonar.organization", "jwnnoh")
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
 
