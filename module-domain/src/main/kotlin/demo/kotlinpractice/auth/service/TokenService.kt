@@ -10,11 +10,11 @@ class TokenService(
 ) : TokenUseCase {
     override fun generateAccessToken(
         id: Long,
-        socialId: String,
+        name: String,
         role: String
     ): String = tokenPort.generateAccessToken(
         id,
-        socialId,
+        name,
         role,
     )
 }
