@@ -55,6 +55,9 @@ subprojects {
 
         // mockk
         testImplementation("io.mockk:mockk:1.13.13")
+
+        //H2 Database for Test
+        testImplementation("com.h2database:h2:2.3.232")
     }
 
     tasks.withType<BootJar> {
