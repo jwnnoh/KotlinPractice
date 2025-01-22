@@ -26,7 +26,7 @@ class AuthController(
         )
 
     @PostMapping("/login")
-    fun loginMember(request: LoginRequest):
+    fun loginMember(@RequestBody request: LoginRequest):
             ResponseEntity<ApiResponse<LoginResponse>> =
         ResponseEntity.ok(
             ApiResponse.success(
