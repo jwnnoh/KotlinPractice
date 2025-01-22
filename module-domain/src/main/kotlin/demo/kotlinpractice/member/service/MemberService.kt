@@ -24,7 +24,7 @@ class MemberService(
     }
 
     @Transactional(readOnly = true)
-    override fun findByName(name: String): Member? {
+    override fun findByName(name: String): Member {
         return memberPersistencePort.findByName(name)
             ?: throw MemberNotFoundException()
     }

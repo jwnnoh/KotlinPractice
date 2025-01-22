@@ -8,7 +8,7 @@ interface MemberUseCase {
 
     fun findById(memberId: Long): Member
 
-    fun findByName(name: String): Member?
+    fun findByName(name: String): Member
 
     fun updateMember(
         memberId: Long,
