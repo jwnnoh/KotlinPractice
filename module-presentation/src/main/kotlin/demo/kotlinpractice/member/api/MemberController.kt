@@ -4,6 +4,8 @@ import demo.kotlinpractice.member.dto.request.MemberUpdateRequest
 import demo.kotlinpractice.member.dto.response.MemberResponse
 import demo.kotlinpractice.member.facade.MemberFacade
 import demo.kotlinpractice.principal.AuthDetails
+import demo.kotlinpractice.response.ApiResponse
+import demo.kotlinpractice.type.SuccessCode
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,15 +21,23 @@ class MemberController(
 ) {
     @GetMapping("/info")
     fun findMember(@AuthenticationPrincipal authDetails: AuthDetails):
-            ResponseEntity<MemberResponse> {
+            ResponseEntity<ApiResponse<MemberResponse>> {
 
-        return ResponseEntity.ok(memberFacade.findMember(authDetails))
+        return ResponseEntity.ok(
+            ApiResponse.success(
+                SuccessCode.REQUEST_OK, memberFacade.findMember(authDetails)
+            )
+        )
     }
 
     @PatchMapping
     fun updateMember(@RequestBody request: MemberUpdateRequest):
-            ResponseEntity<MemberResponse> {
+            ResponseEntity<ApiResponse<MemberResponse>> {
 
-        return ResponseEntity.ok(memberFacade.updateMember(request))
+        return ResponseEntity.ok(
+            ApiResponse.success(
+                SuccessCode.REQUEST_OK, memberFacade.updateMember(request)
+            )
+        )
     }
 }

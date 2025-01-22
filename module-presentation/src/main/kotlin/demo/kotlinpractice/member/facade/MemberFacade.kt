@@ -20,7 +20,6 @@ class MemberFacade(
     }
 
     fun updateMember(request: MemberUpdateRequest): MemberResponse {
-
         val member: Member = memberUseCase.updateMember(
             request.memberId,
             request.name,
