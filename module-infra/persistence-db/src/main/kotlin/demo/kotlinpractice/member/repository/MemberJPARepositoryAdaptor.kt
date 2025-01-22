@@ -1,6 +1,7 @@
 package demo.kotlinpractice.member.repository
 
 import demo.kotlinpractice.member.domain.Member
+import demo.kotlinpractice.member.domain.MemberVO
 import demo.kotlinpractice.member.entity.MemberEntity
 import demo.kotlinpractice.member.port.out.MemberPersistencePort
 import org.springframework.stereotype.Repository
@@ -21,6 +22,11 @@ class MemberJPARepositoryAdaptor(
     override fun save(member: Member): Member =
         memberJPARepository.save(
             MemberEntity.from(member)
+        ).toDomain()
+
+    override fun save(memberVo: MemberVO): Member =
+        memberJPARepository.save(
+            MemberEntity.from(memberVo)
         ).toDomain()
 
     override fun findByName(name: String): Member? =

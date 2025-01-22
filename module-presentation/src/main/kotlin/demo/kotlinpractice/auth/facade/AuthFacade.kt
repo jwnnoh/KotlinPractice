@@ -6,6 +6,7 @@ import demo.kotlinpractice.member.domain.Member
 import demo.kotlinpractice.auth.dto.request.LoginRequest
 import demo.kotlinpractice.auth.dto.request.MemberCreateRequest
 import demo.kotlinpractice.auth.dto.response.LoginResponse
+import demo.kotlinpractice.member.domain.MemberVO
 import demo.kotlinpractice.member.dto.response.MemberResponse
 import demo.kotlinpractice.member.port.`in`.MemberUseCase
 import org.springframework.stereotype.Service
@@ -22,7 +23,9 @@ class AuthFacade(
         val encodedPassword = authUseCase.encodePassword(request.password)
 
         return MemberResponse.of(
-            memberUseCase.createMember(request.name, encodedPassword)
+            memberUseCase.createMember(
+                MemberVO(request.name, encodedPassword)
+            )
         )
     }
 

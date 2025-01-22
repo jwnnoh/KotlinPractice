@@ -2,6 +2,7 @@ package demo.kotlinpractice.member.service
 
 import demo.kotlinpractice.error.exception.MemberNotFoundException
 import demo.kotlinpractice.member.domain.Member
+import demo.kotlinpractice.member.domain.MemberVO
 import demo.kotlinpractice.member.port.`in`.MemberUseCase
 import demo.kotlinpractice.member.port.out.MemberPersistencePort
 import org.springframework.stereotype.Service
@@ -12,13 +13,8 @@ class MemberService(
     private val memberPersistencePort: MemberPersistencePort,
 ) : MemberUseCase {
     @Transactional
-    override fun createMember(name: String, password: String): Member {
-        val member = Member(
-            id = 0,
-            name = name,
-            password = password
-        )
-        return memberPersistencePort.save(member)
+    override fun createMember(memberVO: MemberVO): Member {
+        return memberPersistencePort.save(memberVO)
     }
 
     @Transactional(readOnly = true)

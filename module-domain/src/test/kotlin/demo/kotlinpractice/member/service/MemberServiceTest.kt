@@ -1,6 +1,7 @@
 package demo.kotlinpractice.member.service
 
 import demo.kotlinpractice.config.MemberFixtures.createMember
+import demo.kotlinpractice.config.MemberFixtures.createMemberVO
 import demo.kotlinpractice.error.exception.MemberNotFoundException
 import demo.kotlinpractice.member.port.out.MemberPersistencePort
 import io.kotest.assertions.throwables.shouldThrow
@@ -19,26 +20,20 @@ class MemberServiceTest : DescribeSpec({
         memberPersistencePort = mockk()
         memberService = MemberService(memberPersistencePort)
 
+        val memberVO = createMemberVO()
         val member = createMember()
-        val id = member.id
-        val name = member.name
-        val password = member.password
+        val name = memberVO.name
+        val password = memberVO.password
 
         context("createMember() 메서드를 통해서") {
             it("MemberPersistencePort.save() 메서드가 정상적으로 호출되어, Member가 반환되어야 한다.") {
-                every { memberPersistencePort.save(any()) } returns member
+                every { memberPersistencePort.save(memberVO) } returns member
 
-                val result = memberService.createMember(
-                    name,
-                    password
-                )
+                val result = memberService.createMember(memberVO)
                 result shouldBe member
 
                 verify(exactly = 1) {
-                    memberPersistencePort.save(match {
-                        it.name == name
-                        it.password == password
-                    })
+                    memberPersistencePort.save(memberVO)
                 }
                 confirmVerified(memberPersistencePort)
             }
@@ -48,11 +43,11 @@ class MemberServiceTest : DescribeSpec({
             it("Member를 찾을 수 있으면, 해당 Member를 반환한다") {
                 every { memberPersistencePort.findById(any()) } returns member
 
-                val result = memberService.findById(id)
+                val result = memberService.findById(1L)
                 result shouldBe member
 
                 verify(exactly = 1) {
-                    memberPersistencePort.findById(id)
+                    memberPersistencePort.findById(1L)
                 }
                 confirmVerified(memberPersistencePort)
             }
